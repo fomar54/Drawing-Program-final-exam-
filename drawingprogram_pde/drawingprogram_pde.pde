@@ -16,7 +16,7 @@ drawingSurfaceX = width*0/4;
 };//end setup
 //
  void draw(){
-   if(draw==true)line(mouseX,mouseY,pmouseX,pmouseY);
+   if((mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth &&mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ))line(mouseX,mouseY,pmouseX,pmouseY);
  }
  ;//end draw 
  //
