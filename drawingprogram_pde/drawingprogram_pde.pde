@@ -1,24 +1,26 @@
 //Global Variables
 boolean draw=false;
-float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
+float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight,drawingDiamter;
 //
 void setup(){
   //Mistaken display orientation should break app . feedback to console and CANVAS
   fullScreen();
 //
+
+population();
+//
 rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
 //
-//population
-drawingSurfaceX = width*0/4;
-  drawingSurfaceY = height*0/5;
-  drawingSurfaceWidth = width*3/4;
-  drawingSurfaceHeight = height*4/5;
 };//end setup
 //
  void draw(){
-   if((mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth &&mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ))line(mouseX,mouseY,pmouseX,pmouseY);
+   //
+   //drawing tools 
+   if(draw==true&& (mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth &&mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ))line(mouseX,mouseY,pmouseX,pmouseY);
+ if(draw==true&& (mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth &&mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight )) ellipse  (mouseX, mouseY,drawingDiamter,drawingDiamter );//c ircle drawing tool
+ //rectquitbuttonx,quit
  }
- ;//end draw 
+ //end draw 
  //
  void keyPressed(){
  };//end keypressed 
