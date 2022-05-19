@@ -1,6 +1,5 @@
 //Global Variables
 Boolean draw=false;
-float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight, drawingDiameter;
 //
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float secondTextX,secondTextY,secondTextWidth,secondTextHeight;
@@ -19,23 +18,15 @@ void setup() {
   fullScreen(); //fullScreen, displayWidth, displayHeight
   //
   population();
-  quitButtonX = width*9/10; //18/20=9/10
-  quitButtonY = height*0/20;
-  quitButtonWidth = width*1/10; // 2/20=1/10
-  quitButtonHeight = height*1/20;
+  textSetup();
+ //
   //
-  secondTextX = quitButtonX;
-  secondTextY = height*1/20 ;
-  secondTextWidth = quitButtonWidth; 
-  secondTextHeight = quitButtonHeight;
-  //
-  font = createFont ("Harrington", initialFontSize);
-  //
-  rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
 }//End setup
 //
 void draw() {
   //
+  if(paper==true){
+    pieceOfPaper();
   //Drawing Tools, with a combined Boolean
   if ( draw==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) line( mouseX, mouseY, pmouseX, pmouseY ) ;//End Line Draw
   if ( draw==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) ellipse ( mouseX, mouseY, drawingDiameter, drawingDiameter ); //Circle Drawing Tool
@@ -86,7 +77,9 @@ void mousePressed() {
   }//Button Paper (Drawing Surface)
   //
   if ( mouseX>=quitButtonX && mouseX<=quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight ) exit();
+ 
   //
+  if( mouseX>=secondTextX && mouseX<=secondTextX+secondTextWidth && mouseY>=secondTextY && mouseY<=secondTextY+secondTextHeight ) paper=true;
 }//End mousepressed
 //
 //End MAIN
