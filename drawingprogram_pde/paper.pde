@@ -1,9 +1,9 @@
-//gobal vaiables
-boolean paper=false;
+//Global Variables
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight, drawingDiameter;
+Boolean paper=false;
 //
-void pieceOfPaper(){ 
+void pieceOfPaper() {
   fill(white);
-rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
-paper=false;
-}//end of pieceOfPaper
+  rect(drawingSurfaceX+width*1/60, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+  paper=false;
+}//End pieceOfPaper
