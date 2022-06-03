@@ -1,5 +1,8 @@
- 
+ int appWidth, appHeight;
 void population() {
+  appWidth = width;//displayWidth
+  appHeight = height;// displayHeight
+
   //
   drawingSurfaceX = width*0/4;
   drawingSurfaceY = height*0/5;
@@ -12,6 +15,7 @@ void population() {
   quitButtonWidth = width*1/10; // 2/20=1/10
   quitButtonHeight = height*1/20;
   //
+  
   secondTextX = quitButtonX;
   secondTextY = height*1/20;
   secondTextWidth = quitButtonWidth;
