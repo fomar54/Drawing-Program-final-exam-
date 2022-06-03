@@ -1,10 +1,12 @@
 //Global Variables
 Boolean draw=false;
 //
-float quitx, quitButtonY, quitrectWidth, quitrectHeight ;
+float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight ;
 color orange =#FA740D , yellow =#FAF30D ,green = #499322,purple =#832293 ,teal = #28DEDC,pink = #F784EC,grey =#4F4D50 ,blue = #2333CE ;
 int x = width*1/4, y = height*1/4;
 int numberofColour = 10;
+float[] rectY = new float[numberofColour];
+float[] rectX = new float[numberofColour];
 float[] rectWidth = new float[numberofColour];
 float[] rectHeight = new float[numberofColour];
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
@@ -18,6 +20,54 @@ void setup() {
   textSetup();
   pieceOfPaper();
   //
+  
+   rectX[1] = appWidth*(0.6/15.0); //Section 3, subsection 2, Numerator is 11
+  rectY[1] = appHeight*(13.0/15.0); //Section 3, subsection 4, Numerator is 14
+  rectWidth[1] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  rectHeight[1] = appHeight*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  //
+   rectX[2] = appWidth*(0.12/15.0); //Section 3, 
+  rectY[2] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[2] = appWidth*(1.0/3.0)*(1.0/5.0); 
+  rectHeight[2] = appHeight*(1.0/3.0)*(1.0/5.0); 
+//
+ rectX[3] = appWidth*(0.18/15.0); //Section 3, subsection 2, Numerator is 11
+  rectY[3] = appHeight*(13.0/15.0); //Section 3, subsection 4, Numerator is 14
+  rectWidth[3] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  rectHeight[3] = appHeight*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  //
+   rectX[4] = appWidth*(0.24/15.0); //Section 3, 
+  rectY[4] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[4] = appWidth*(1.0/3.0)*(1.0/5.0); 
+  rectHeight[4] = appHeight*(1.0/3.0)*(1.0/5.0); 
+//
+//
+ rectX[5] = appWidth*(0.30/15.0); //Section 3, subsection 2, Numerator is 11
+  rectY[5] = appHeight*(13.0/15.0); //Section 3, subsection 4, Numerator is 14
+  rectWidth[5] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  rectHeight[5] = appHeight*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  //
+   rectX[6] = appWidth*(0.36/15.0); //Section 3, 
+  rectY[6] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[6] = appWidth*(1.0/3.0)*(1.0/5.0); 
+  rectHeight[6] = appHeight*(1.0/3.0)*(1.0/5.0); 
+//
+//
+ rectX[7] = appWidth*(0.42/15.0); //Section 3, subsection 2, Numerator is 11
+  rectY[7] = appHeight*(13.0/15.0); //Section 3, subsection 4, Numerator is 14
+  rectWidth[7] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  rectHeight[7] = appHeight*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  //
+   rectX[8] = appWidth*(0.48/15.0); //Section 3, 
+  rectY[8] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[8] = appWidth*(1.0/3.0)*(1.0/5.0); 
+  rectHeight[8] = appHeight*(1.0/3.0)*(1.0/5.0); 
+//
+ rectX[9] = appWidth*(0.54/15.0); //Section 3, 
+  rectY[9] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[9] = appWidth*(1.0/3.0)*(1.0/5.0); 
+  rectHeight[9] = appHeight*(1.0/3.0)*(1.0/5.0); 
+//
 }//End setup
 //
 void draw() {
@@ -29,14 +79,14 @@ void draw() {
   if ( draw==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) ellipse ( mouseX, mouseY, drawingDiameter, drawingDiameter ); //Circle Drawing Tool
   //
   //Quit Button Hoverover
-  if ( mouseX>=quitx && mouseX<=quitx+quitrectWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitrectHeight  ) {
+  if ( mouseX>=quitButtonX && mouseX<=quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight  ) {
     quitButtonColour = red;
   } else {
     quitButtonColour = black;
   }//End Quit Button Hoverover
   fill(quitButtonColour);
   noStroke(); //removes rect() outline
-  rect(quitx, quitButtonY, quitrectWidth, quitrectHeight );
+  rect(quitButtonX, quitButtonY,quitButtonWidth , quitButtonHeight );
   stroke(reset);
   fill(resetColour); //White, not night mode friendly
   //
@@ -46,7 +96,7 @@ void draw() {
   //Values: [LEFT | CENTER | RIGHT] & [TOP | CENTER | BOTTOM | BASELINE]
   size = 20; //Change until fits
   textFont(font, size);
-  text(quitButtonString, quitx, quitButtonY, quitrectWidth, quitrectHeight );
+  text(quitButtonString, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight );
   //
    rect(x, y, rectWidth[1], rectHeight[1]);
    rect(x, y, rectWidth[2], rectHeight[2]);
@@ -148,7 +198,7 @@ void mousePressed() {
     }//End draw Boolean
   }//Button Paper (Drawing Surface)
   //
-  if ( mouseX>=quitx && mouseX<=quitx+quitrectWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitrectHeight  ) exit();
+  if ( mouseX>=quitButtonX && mouseX<=quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight  ) exit();
   //
   if ( mouseX>=secondTextX && mouseX<=secondTextX+secondTextWidth && mouseY>=secondTextY && mouseY<=secondTextY+secondTextHeight ) pieceOfPaper();  //paper=true;
   //
