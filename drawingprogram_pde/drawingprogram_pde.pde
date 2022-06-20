@@ -17,6 +17,7 @@ PImage pic1;
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 float thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight;
 
+
 float linesize;
 int reset=1;
 color white=#FFFFFF, offwhite=#F2E1E1, resetColour=white, red=#FF0303, black=0, quitButtonColour;
@@ -106,13 +107,13 @@ void draw() {
   //if ( paper==true ) pieceOfPaper();
   stroke(ink);
   fill(ink);
- 
+ strokeWeight(linesize);
 
   //
   //Drawing Tools, with a combined Boolean
   if ( draw==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) line( mouseX, mouseY, pmouseX, pmouseY ) ;//End Line Draw
   if ( draw1==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) ellipse ( mouseX, mouseY, drawingDiameter, drawingDiameter ); //Circle Drawing Tool
- strokeWeight(linesize);
+ 
   //
   //Quit Button Hoverover
   if ( mouseX>=quitButtonX && mouseX<=quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight  ) {
@@ -132,7 +133,7 @@ void draw() {
   fill(resetColour); //White, not night mode friendly
   //
   rect(ButtonX, ButtonY, ButtonWidth, ButtonHeight );
-rect(titleX, titleY, titleWidth, titleHeight );
+  rect(titleX, titleY, titleWidth, titleHeight ); 
   //Text, Quit Button
   fill(black); //Ink
   textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
@@ -156,7 +157,7 @@ rect(titleX, titleY, titleWidth, titleHeight );
   rect(x, y, rectWidth[11], rectHeight[11]);
   rect(x, y, rectWidth[12], rectHeight[12]);
   rect(x, y, rectWidth[13], rectHeight[13]);
-//
+  //
 
 
   //
@@ -291,22 +292,14 @@ void mousePressed() {
     }
   }
 
-  //
-
-
-
 
   //
 
   //End draw Boolean
   if (  mouseX>=x && mouseX<=x+rectWidth[13] && mouseY>=y && mouseY<=y+rectHeight [13]) linesize =1;
-  
   if (  mouseX>=x && mouseX<=x+rectWidth[12] && mouseY>=y && mouseY<=y+rectHeight [12]) linesize=10;
-  
   if (  mouseX>=x && mouseX<=x+rectWidth[11] && mouseY>=y && mouseY<=y+rectHeight [11]) linesize=45;
-
   //Button Paper (Drawing Surface)
-
   if (  mouseX>=x && mouseX<=x+rectWidth[10] && mouseY>=y && mouseY<=y+rectHeight [10]) ink = #FFFFFF;
   if ( mouseX>=x && mouseX<=x+rectWidth[1] && mouseY>=y && mouseY<=y+rectHeight [1] ) ink = #FF0303; 
 
@@ -315,8 +308,6 @@ void mousePressed() {
   if ( mouseX>=x && mouseX<=x+rectWidth[3] && mouseY>=y && mouseY<=y+rectHeight [3] ) ink = #FAF30D;
   //Button 3
   if ( mouseX>=x && mouseX<=x+rectWidth[4] && mouseY>=y && mouseY<=y+rectHeight [4] ) ink =#499322;
-
-
   if ( mouseX>=x && mouseX<=x+rectWidth[5] && mouseY>=y && mouseY<=y+rectHeight [5] ) ink =  #28DEDC;
   //Button 1
   if ( mouseX>=x && mouseX<=x+rectWidth[6] && mouseY>=y && mouseY<=y+rectHeight [6] ) ink =#2333CE ;//Button 2
@@ -324,8 +315,10 @@ void mousePressed() {
   if ( mouseX>=x && mouseX<=x+rectWidth[8] && mouseY>=y && mouseY<=y+rectHeight [8] ) ink= #F784EC;
   if ( mouseX>=x && mouseX<=x+rectWidth[9] && mouseY>=y && mouseY<=y+rectHeight [9] )ink = #4F4D50;
   //
-   if (  mouseX>= titleX  && mouseX<= titleX +  titleWidth&& mouseY>=titleY && mouseY<=titleY+ titleHeight) image(pic1,drawingSurfaceX+width*1/60, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);;
+  if (  mouseX>= titleX  && mouseX<= titleX +  titleWidth&& mouseY>=titleY && mouseY<=titleY+ titleHeight) image(pic1, drawingSurfaceX+width*1/60, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+
   if ( mouseX>=quitButtonX && mouseX<=quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight  ) exit();
+
   if ( mouseX>=secondTextX && mouseX<=secondTextX+secondTextWidth && mouseY>=secondTextY && mouseY<=secondTextY+secondTextHeight ) pieceOfPaper();  //paper=true
 }
 //End mousepressed
