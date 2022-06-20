@@ -21,15 +21,16 @@ void population() {
   ButtonWidth = width*1/10; // 2/20=1/10
   ButtonHeight = height*5/20;
   //
+  //
   secondTextX = quitButtonX;
   secondTextY = height*1/20;
   secondTextWidth = quitButtonWidth;
   secondTextHeight = quitButtonHeight;
   //
-   thirdTextX = x;
-  thirdTextY = y;
-  thirdTextWidth = rectWidth[10];
-  thirdTextHeight =  rectHeight[10];
+   thirdTextX =    ButtonX;
+  thirdTextY =  ButtonY;
+  thirdTextWidth = ButtonWidth  ;
+  thirdTextHeight = ButtonHeight; 
   //
-  
+ 
 }//End population
