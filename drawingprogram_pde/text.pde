@@ -4,6 +4,7 @@ String quitButtonString = "QUIT";
 String ButtonString = "spray can";
 String secondTextString = "clear drawing ";
 String titletextstring="drawing template";
+
 //
 void textSetup() {
   font = createFont ("Serif", initialFontSize);
