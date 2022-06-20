@@ -12,11 +12,13 @@ float[] rectY = new float[numberofColour];
 float[] rectX = new float[numberofColour];
 float[] rectWidth = new float[numberofColour];
 float[] rectHeight = new float[numberofColour];
-PImage pic1,pic2;
+PImage pic1, pic2;
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 float thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight;
+
+float linesize;
 int reset=1;
-color white=#FFFFFF,offwhite=#F2E1E1, resetColour=white, red=#FF0303, black=0, quitButtonColour;
+color white=#FFFFFF, offwhite=#F2E1E1, resetColour=white, red=#FF0303, black=0, quitButtonColour;
 //
 void setup() {
   //Mandatory: Mistaken display orientation should break app, feedback to console and CANVAS
@@ -26,14 +28,29 @@ void setup() {
   pieceOfPaper();
   loadImage("Geek Squad Setup Guide.png");
   //
+  rectX[13] = appWidth*(13.0/15.0); //Section 3, 
+  rectY[13] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[13] = appWidth*(1.0/3.0)*(4.0/5.0); 
+  rectHeight[13] = appHeight*(0.6/3.0)*(3.9/5.0);
+  //
+  rectX[12] = appWidth*(13.0/15.0); //Section 3, 
+  rectY[12] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[12] = appWidth*(1.0/3.0)*(3.0/5.0); 
+  rectHeight[12] = appHeight*(0.6/3.0)*(3.9/5.0);
 
-  
+  //
+  rectX[11] = appWidth*(13.0/15.0); //Section 3, 
+  rectY[11] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[11] = appWidth*(1.0/3.0)*(2.0/5.0); 
+  rectHeight[11] = appHeight*(0.6/3.0)*(3.9/5.0);
+
+
   //
   rectX[10] = appWidth*(13.0/15.0); //Section 3, 
   rectY[10] = appHeight*(13.0/15.0); //Section 3,
   rectWidth[10] = appWidth*(1.0/3.0)*(1.0/5.0); 
   rectHeight[10] = appHeight*(2.7/3.0)*(3.9/5.0);
-  
+
   rectX[1] = appWidth*(13.0/15.0); //Section 3, subsection 2, Numerator is 11
   rectY[1] = appHeight*(13.0/15.0); //Section 3, subsection 4, Numerator is 14
   rectWidth[1] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
@@ -81,7 +98,6 @@ void setup() {
   rectWidth[9] = appWidth*(1.0/3.0)*(1.0/5.0); 
   rectHeight[9] = appHeight*(2.7/3.0)*(0.3/5.0); 
   //
-
 }//End setup
 //
 void draw() {
@@ -89,12 +105,13 @@ void draw() {
   //if ( paper==true ) pieceOfPaper();
   stroke(ink);
   fill(ink);
-  
+ 
+
   //
   //Drawing Tools, with a combined Boolean
   if ( draw==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) line( mouseX, mouseY, pmouseX, pmouseY ) ;//End Line Draw
   if ( draw1==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) ellipse ( mouseX, mouseY, drawingDiameter, drawingDiameter ); //Circle Drawing Tool
-
+ strokeWeight(linesize);
   //
   //Quit Button Hoverover
   if ( mouseX>=quitButtonX && mouseX<=quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight  ) {
@@ -113,15 +130,16 @@ void draw() {
   stroke(reset);
   fill(resetColour); //White, not night mode friendly
   //
-   rect(ButtonX, ButtonY, ButtonWidth, ButtonHeight );
+  rect(ButtonX, ButtonY, ButtonWidth, ButtonHeight );
+
   //Text, Quit Button
   fill(black); //Ink
   textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
   //Values: [LEFT | CENTER | RIGHT] & [TOP | CENTER | BOTTOM | BASELINE]
   size = 20; //Change until fits
   textFont(font, size);
-    text(ButtonString, thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight);
-  text(quitButtonString, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight );
+  text(quitButtonString, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight ); 
+  //text(ButtonString, thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight);
 
   //
   rect(x, y, rectWidth[1], rectHeight[1]);
@@ -133,13 +151,35 @@ void draw() {
   rect(x, y, rectWidth[7], rectHeight[7]);
   rect(x, y, rectWidth[8], rectHeight[8]);
   rect(x, y, rectWidth[9], rectHeight[9]);
-   rect(x, y, rectWidth[10], rectHeight[10]);
+  rect(x, y, rectWidth[10], rectHeight[10]);
+  rect(x, y, rectWidth[11], rectHeight[11]);
+  rect(x, y, rectWidth[12], rectHeight[12]);
+  rect(x, y, rectWidth[13], rectHeight[13]);
 
-  
-  
 
   //
-   if ( mouseX>=x && mouseX<=x+rectWidth[10] && mouseY>=y && mouseY<=y+rectHeight [10] ) {
+  if ( mouseX>=x && mouseX<=x+rectWidth[13] && mouseY>=y && mouseY<=y+rectHeight [13] ) {
+    fill(offwhite);
+    rect(x, y, rectWidth[13], rectHeight [13]);
+  } else {
+    fill(offwhite );
+    rect(x, y, rectWidth[13], rectHeight [13]);
+  }
+  if ( mouseX>=x && mouseX<=x+rectWidth[12] && mouseY>=y && mouseY<=y+rectHeight [12] ) {
+    fill(offwhite);
+    rect(x, y, rectWidth[12], rectHeight [12]);
+  } else {
+    fill(offwhite );
+    rect(x, y, rectWidth[12], rectHeight [12]);
+  }
+  if ( mouseX>=x && mouseX<=x+rectWidth[11] && mouseY>=y && mouseY<=y+rectHeight [11] ) {
+    fill(offwhite);
+    rect(x, y, rectWidth[11], rectHeight [11]);
+  } else {
+    fill(offwhite );
+    rect(x, y, rectWidth[11], rectHeight [11]);
+  }
+  if ( mouseX>=x && mouseX<=x+rectWidth[10] && mouseY>=y && mouseY<=y+rectHeight [10] ) {
     fill(offwhite);
     rect(x, y, rectWidth[10], rectHeight [10]);
   } else {
@@ -209,8 +249,8 @@ void draw() {
     fill(grey );
     rect(x, y, rectWidth[9], rectHeight [9]);
   }
-  
- 
+
+
   //button 4 
 
   //Second Rectangle with More Text
@@ -222,47 +262,69 @@ void draw() {
   size = 13; //Change until fits
   textFont(font, size);
   text(secondTextString, secondTextX, secondTextY, secondTextWidth, secondTextHeight);
-  
+  //
+
+  text(ButtonString, thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight);
 }//End draw
 //
 void keyPressed() {
 }//End keyPressed
 //
 void mousePressed() {
+
+  if (  mouseX>= ButtonX&& mouseX<= ButtonX+ButtonWidth && mouseY>=ButtonY && mouseY<=ButtonY+ButtonHeight) {
+    if (draw1 == false) {
+      draw1 = true;
+    } else {
+      draw1 = false;
+    }
+  }
   //Paper-Button
+
   if (mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) {
     if (draw == false) {
       draw = true;
     } else {
       draw = false;
-    }//End draw Boolean
-    //Button Paper (Drawing Surface)
-  if ( mouseX>=x && mouseX<=x+rectWidth[10] && mouseY>=y && mouseY<=y+rectHeight [10] ) ink = #FFFFFF;
-    if ( mouseX>=x && mouseX<=x+rectWidth[1] && mouseY>=y && mouseY<=y+rectHeight [1] ) ink = #FF0303; 
+    }
+  }
 
-    if ( mouseX>=x && mouseX<=x+rectWidth[2] && mouseY>=y && mouseY<=y+rectHeight [2] ) ink=#FA740D;
-    //Button 2
-    if ( mouseX>=x && mouseX<=x+rectWidth[3] && mouseY>=y && mouseY<=y+rectHeight [3] ) ink = #FAF30D;
-    //Button 3
-    if ( mouseX>=x && mouseX<=x+rectWidth[4] && mouseY>=y && mouseY<=y+rectHeight [4] ) ink =#499322;
+  //
 
 
-    if ( mouseX>=x && mouseX<=x+rectWidth[5] && mouseY>=y && mouseY<=y+rectHeight [5] ) ink =  #28DEDC;
-  } //Button 1
+
+
+  //
+
+  //End draw Boolean
+  if (  mouseX>=x && mouseX<=x+rectWidth[13] && mouseY>=y && mouseY<=y+rectHeight [13]) linesize =1;
+  ;
+  if (  mouseX>=x && mouseX<=x+rectWidth[12] && mouseY>=y && mouseY<=y+rectHeight [12]) linesize=10;
+  ;
+  if (  mouseX>=x && mouseX<=x+rectWidth[11] && mouseY>=y && mouseY<=y+rectHeight [11]) linesize=45;
+
+  //Button Paper (Drawing Surface)
+
+  if (  mouseX>=x && mouseX<=x+rectWidth[10] && mouseY>=y && mouseY<=y+rectHeight [10]) ink = #FFFFFF;
+  if ( mouseX>=x && mouseX<=x+rectWidth[1] && mouseY>=y && mouseY<=y+rectHeight [1] ) ink = #FF0303; 
+
+  if ( mouseX>=x && mouseX<=x+rectWidth[2] && mouseY>=y && mouseY<=y+rectHeight [2] ) ink=#FA740D;
+  //Button 2
+  if ( mouseX>=x && mouseX<=x+rectWidth[3] && mouseY>=y && mouseY<=y+rectHeight [3] ) ink = #FAF30D;
+  //Button 3
+  if ( mouseX>=x && mouseX<=x+rectWidth[4] && mouseY>=y && mouseY<=y+rectHeight [4] ) ink =#499322;
+
+
+  if ( mouseX>=x && mouseX<=x+rectWidth[5] && mouseY>=y && mouseY<=y+rectHeight [5] ) ink =  #28DEDC;
+  //Button 1
   if ( mouseX>=x && mouseX<=x+rectWidth[6] && mouseY>=y && mouseY<=y+rectHeight [6] ) ink =#2333CE ;//Button 2
   if ( mouseX>=x && mouseX<=x+rectWidth[7] && mouseY>=y && mouseY<=y+rectHeight [7] )ink=#832293 ; //Button 3
   if ( mouseX>=x && mouseX<=x+rectWidth[8] && mouseY>=y && mouseY<=y+rectHeight [8] ) ink= #F784EC;
-  if ( mouseX>=x && mouseX<=x+rectWidth[9] && mouseY>=y && mouseY<=y+rectHeight [9] ) ink = #4F4D50;
-
-
-  
-
+  if ( mouseX>=x && mouseX<=x+rectWidth[9] && mouseY>=y && mouseY<=y+rectHeight [9] )ink = #4F4D50;
   //
   if ( mouseX>=quitButtonX && mouseX<=quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight  ) exit();
-
-
   if ( mouseX>=secondTextX && mouseX<=secondTextX+secondTextWidth && mouseY>=secondTextY && mouseY<=secondTextY+secondTextHeight ) pieceOfPaper();  //paper=true
-
-}//End mousepressed
+}
+//End mousepressed
 //
 //End MAIN
