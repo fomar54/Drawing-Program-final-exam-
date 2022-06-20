@@ -1,7 +1,7 @@
 PFont font;
 int initialFontSize=55, size;
 String quitButtonString = "QUIT";
-String ButtonString = "easer";
+String ButtonString = "spray can";
 String secondTextString = "clear drawing ";
 //
 void textSetup() {
