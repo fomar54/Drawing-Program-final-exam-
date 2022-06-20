@@ -16,7 +16,7 @@ PImage pic1,pic2;
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 float thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight;
 int reset=1;
-color white=255, resetColour=white, red=#FF0303, black=0, quitButtonColour;
+color white=#FFFFFF,offwhite=#F2E1E1, resetColour=white, red=#FF0303, black=0, quitButtonColour;
 //
 void setup() {
   //Mandatory: Mistaken display orientation should break app, feedback to console and CANVAS
@@ -29,7 +29,11 @@ void setup() {
 
   
   //
-
+  rectX[10] = appWidth*(13.0/15.0); //Section 3, 
+  rectY[10] = appHeight*(13.0/15.0); //Section 3,
+  rectWidth[10] = appWidth*(1.0/3.0)*(1.0/5.0); 
+  rectHeight[10] = appHeight*(2.7/3.0)*(3.9/5.0);
+  
   rectX[1] = appWidth*(13.0/15.0); //Section 3, subsection 2, Numerator is 11
   rectY[1] = appHeight*(13.0/15.0); //Section 3, subsection 4, Numerator is 14
   rectWidth[1] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
@@ -77,10 +81,7 @@ void setup() {
   rectWidth[9] = appWidth*(1.0/3.0)*(1.0/5.0); 
   rectHeight[9] = appHeight*(2.7/3.0)*(0.3/5.0); 
   //
-  rectX[10] = appWidth*(13.0/15.0); //Section 3, 
-  rectY[10] = appHeight*(11.0/15.0); //Section 3,
-  rectWidth[10] = appWidth*(2.0/3.0)*(2.0/5.0); 
-  rectHeight[10] = appHeight*(2.7/3.0)*(0.3/5.0);
+
 }//End setup
 //
 void draw() {
@@ -88,6 +89,7 @@ void draw() {
   //if ( paper==true ) pieceOfPaper();
   stroke(ink);
   fill(ink);
+  
   //
   //Drawing Tools, with a combined Boolean
   if ( draw==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight ) line( mouseX, mouseY, pmouseX, pmouseY ) ;//End Line Draw
@@ -112,16 +114,15 @@ void draw() {
   fill(resetColour); //White, not night mode friendly
   //
    rect(ButtonX, ButtonY, ButtonWidth, ButtonHeight );
-   
   //Text, Quit Button
   fill(black); //Ink
   textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
   //Values: [LEFT | CENTER | RIGHT] & [TOP | CENTER | BOTTOM | BASELINE]
   size = 20; //Change until fits
   textFont(font, size);
-  
+    text(ButtonString, thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight);
   text(quitButtonString, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight );
-  text(ButtonString, ButtonX, ButtonY, ButtonWidth, ButtonHeight );
+
   //
   rect(x, y, rectWidth[1], rectHeight[1]);
   rect(x, y, rectWidth[2], rectHeight[2]);
@@ -132,11 +133,19 @@ void draw() {
   rect(x, y, rectWidth[7], rectHeight[7]);
   rect(x, y, rectWidth[8], rectHeight[8]);
   rect(x, y, rectWidth[9], rectHeight[9]);
-  rect(x, y, rectWidth[10], rectHeight[10]);
+   rect(x, y, rectWidth[10], rectHeight[10]);
+
   
   
 
   //
+   if ( mouseX>=x && mouseX<=x+rectWidth[10] && mouseY>=y && mouseY<=y+rectHeight [10] ) {
+    fill(offwhite);
+    rect(x, y, rectWidth[10], rectHeight [10]);
+  } else {
+    fill(offwhite );
+    rect(x, y, rectWidth[10], rectHeight [10]);
+  }
   if ( mouseX>=x && mouseX<=x+rectWidth[1] && mouseY>=y && mouseY<=y+rectHeight [1] ) {
     fill(red);
     rect(x, y, rectWidth[1], rectHeight [1]); //same rect() as above
@@ -195,12 +204,13 @@ void draw() {
   } 
   if ( mouseX>=x && mouseX<=x+rectWidth[9] && mouseY>=y && mouseY<=y+rectHeight [9] ) {
     fill(grey);
-    rect(x, y, rectWidth[8], rectHeight [9]);
+    rect(x, y, rectWidth[9], rectHeight [9]);
   } else {
     fill(grey );
-    rect(x, y, rectWidth[8], rectHeight [9]);
+    rect(x, y, rectWidth[9], rectHeight [9]);
   }
-
+  
+ 
   //button 4 
 
   //Second Rectangle with More Text
@@ -213,13 +223,6 @@ void draw() {
   textFont(font, size);
   text(secondTextString, secondTextX, secondTextY, secondTextWidth, secondTextHeight);
   
-  //
-  fill(black); //Ink
-  textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
-  //Values: [LEFT | CENTER | RIGHT] & [TOP | CENTER | BOTTOM | BASELINE]
-  size = 13; //Change until fits
-  textFont(font, size);
-  text( ButtonString, thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight);
 }//End draw
 //
 void keyPressed() {
@@ -234,7 +237,7 @@ void mousePressed() {
       draw = false;
     }//End draw Boolean
     //Button Paper (Drawing Surface)
-
+  if ( mouseX>=x && mouseX<=x+rectWidth[10] && mouseY>=y && mouseY<=y+rectHeight [10] ) ink = #FFFFFF;
     if ( mouseX>=x && mouseX<=x+rectWidth[1] && mouseY>=y && mouseY<=y+rectHeight [1] ) ink = #FF0303; 
 
     if ( mouseX>=x && mouseX<=x+rectWidth[2] && mouseY>=y && mouseY<=y+rectHeight [2] ) ink=#FA740D;
@@ -250,7 +253,8 @@ void mousePressed() {
   if ( mouseX>=x && mouseX<=x+rectWidth[7] && mouseY>=y && mouseY<=y+rectHeight [7] )ink=#832293 ; //Button 3
   if ( mouseX>=x && mouseX<=x+rectWidth[8] && mouseY>=y && mouseY<=y+rectHeight [8] ) ink= #F784EC;
   if ( mouseX>=x && mouseX<=x+rectWidth[9] && mouseY>=y && mouseY<=y+rectHeight [9] ) ink = #4F4D50;
-  
+
+
   
 
   //
