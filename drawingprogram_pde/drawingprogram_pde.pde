@@ -3,6 +3,7 @@ Boolean draw=false, draw1=false ;
 //
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight ;
 float ButtonX, ButtonY, ButtonWidth, ButtonHeight ;
+float titleX, titleY, titleWidth, titleHeight;
 float rectXPic1, rectYPic1, rectWidthPic1, rectHeightPic1;
 float rectXPic2, rectYPic2, rectWidthPic2, rectHeightPic2;
 color orange =#FA740D, yellow =#FAF30D, ink, green = #499322, purple =#832293, teal = #28DEDC, pink = #F784EC, grey =#4F4D50, blue = #2333CE ;
@@ -12,7 +13,7 @@ float[] rectY = new float[numberofColour];
 float[] rectX = new float[numberofColour];
 float[] rectWidth = new float[numberofColour];
 float[] rectHeight = new float[numberofColour];
-PImage pic1, pic2;
+PImage pic1;
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 float thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight;
 
@@ -26,7 +27,7 @@ void setup() {
   population();
   textSetup();
   pieceOfPaper();
-  loadImage("Geek Squad Setup Guide.png");
+  pic1 = loadImage("images.jpeg");
   //
   rectX[13] = appWidth*(13.0/15.0); //Section 3, 
   rectY[13] = appHeight*(13.0/15.0); //Section 3,
@@ -131,7 +132,7 @@ void draw() {
   fill(resetColour); //White, not night mode friendly
   //
   rect(ButtonX, ButtonY, ButtonWidth, ButtonHeight );
-
+rect(titleX, titleY, titleWidth, titleHeight );
   //Text, Quit Button
   fill(black); //Ink
   textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
@@ -139,7 +140,7 @@ void draw() {
   size = 20; //Change until fits
   textFont(font, size);
   text(quitButtonString, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight ); 
-  //text(ButtonString, thirdTextX, thirdTextY, thirdTextWidth, thirdTextHeight);
+  text(titletextstring, titleX, titleY, titleWidth, titleHeight);
 
   //
   rect(x, y, rectWidth[1], rectHeight[1]);
@@ -155,6 +156,7 @@ void draw() {
   rect(x, y, rectWidth[11], rectHeight[11]);
   rect(x, y, rectWidth[12], rectHeight[12]);
   rect(x, y, rectWidth[13], rectHeight[13]);
+//
 
 
   //
@@ -298,9 +300,9 @@ void mousePressed() {
 
   //End draw Boolean
   if (  mouseX>=x && mouseX<=x+rectWidth[13] && mouseY>=y && mouseY<=y+rectHeight [13]) linesize =1;
-  ;
+  
   if (  mouseX>=x && mouseX<=x+rectWidth[12] && mouseY>=y && mouseY<=y+rectHeight [12]) linesize=10;
-  ;
+  
   if (  mouseX>=x && mouseX<=x+rectWidth[11] && mouseY>=y && mouseY<=y+rectHeight [11]) linesize=45;
 
   //Button Paper (Drawing Surface)
@@ -322,6 +324,7 @@ void mousePressed() {
   if ( mouseX>=x && mouseX<=x+rectWidth[8] && mouseY>=y && mouseY<=y+rectHeight [8] ) ink= #F784EC;
   if ( mouseX>=x && mouseX<=x+rectWidth[9] && mouseY>=y && mouseY<=y+rectHeight [9] )ink = #4F4D50;
   //
+   if (  mouseX>= titleX  && mouseX<= titleX +  titleWidth&& mouseY>=titleY && mouseY<=titleY+ titleHeight) image(pic1,drawingSurfaceX+width*1/60, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);;
   if ( mouseX>=quitButtonX && mouseX<=quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight  ) exit();
   if ( mouseX>=secondTextX && mouseX<=secondTextX+secondTextWidth && mouseY>=secondTextY && mouseY<=secondTextY+secondTextHeight ) pieceOfPaper();  //paper=true
 }
